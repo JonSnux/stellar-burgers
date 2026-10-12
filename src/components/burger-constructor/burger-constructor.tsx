@@ -1,24 +1,39 @@
 import { BurgerConstructorUI } from '@ui';
 import { useMemo } from 'react';
-
-import type { TConstructorIngredient, TConstructorState, TOrder } from '@utils-types';
+import type { TConstructorIngredient } from '@utils-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getUserSelector } from '@/services/slices/user-slice';
+import { clearConstructor, getConstructorSelector } from '@/services/slices/constructor-slice';
+import { clearOrder, getOrderModalDataSelector, getOrderRequestSelector, orderBurger } from '@/services/slices/order-slice';
+import type { AppDispatch } from '@/services/store';
 
 export const BurgerConstructor = (): React.JSX.Element | null => {
-  /** TODO: Взять переменные constructorItems, orderRequest и orderModalData из стора */
-  const constructorItems: TConstructorState = {
-    bun: null,
-    ingredients: [],
-  };
-  const orderRequest = false;
-  const orderModalData: TOrder | null = null;
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const user = useSelector(getUserSelector);
+  const constructorItems = useSelector(getConstructorSelector);
+  const orderRequest = useSelector(getOrderRequestSelector);
+  const orderModalData = useSelector(getOrderModalDataSelector);
 
   const onOrderClick = (): void => {
+    if (!user) {
+      navigate('/login');
+      return
+    }
     if (!constructorItems.bun || orderRequest) return;
-    // TODO: Оформить заказ
+    const ingredientIds = [
+      constructorItems.bun._id,
+      ...constructorItems.ingredients.map((item) => item._id),
+      constructorItems.bun._id,
+    ];
+    dispatch(orderBurger(ingredientIds))
+      .unwrap()
+      .then(() => dispatch(clearConstructor()));
   };
 
   const closeOrderModal = (): void => {
-    // TODO: Закрыть модальное окно и сбросить заказ
+    dispatch(clearOrder());
   };
 
   const price = useMemo(

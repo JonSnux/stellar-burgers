@@ -36,7 +36,7 @@
     "react-dom": "^19.1.1",
     "react-intersection-observer": "^11.0.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.9.3"
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "latest",
@@ -103,5 +103,19 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "description": "При создании коммита автоматически запускаются проверка линтерами `stylelint`, `eslint` и форматирование `prettier`.",
+  "main": "prettier.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonSnux/stellar-burgers.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/JonSnux/stellar-burgers/issues"
+  },
+  "homepage": "https://github.com/JonSnux/stellar-burgers#readme"
 }
