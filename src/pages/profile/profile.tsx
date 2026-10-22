@@ -19,6 +19,7 @@ export const Profile = (): React.JSX.Element => {
       ...prevState,
       name: user?.name || '',
       email: user?.email || '',
+      password: "",
     }));
   }, [user]);
 

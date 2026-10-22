@@ -8,7 +8,7 @@ export const ProfileOrders = (): React.JSX.Element => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getOrders());
-  })
+  }, [])
 
   return <ProfileOrdersUI orders={orders} />;
 };
