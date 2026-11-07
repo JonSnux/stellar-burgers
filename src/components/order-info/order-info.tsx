@@ -10,7 +10,7 @@ import { getOrderByNumber, getOrderDataSelector } from '@/services/slices/order-
 
 export const OrderInfo = (): React.JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
-  const {number} = useParams();
+  const { number } = useParams();
   const orders = useSelector(getOrdersSelector);
   const ingredients = useSelector(getIngredientsSelector);
   const loadOrder = useSelector(getOrderDataSelector);

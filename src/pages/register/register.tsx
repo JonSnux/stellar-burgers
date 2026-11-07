@@ -11,7 +11,7 @@ export const Register = (): React.JSX.Element => {
 
   const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
-    dispatch(registerUser({name: userName, email, password}));
+    dispatch(registerUser({ name: userName, email, password }));
   };
 
   return (
