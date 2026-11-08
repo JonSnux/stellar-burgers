@@ -20,49 +20,36 @@ test.describe('Проверка работы конструктора', function
       .locator('li', { hasText: bunName })
       .getByRole('button', { name: 'Добавить' })
       .click();
-    await expect(
-      page.getByRole('img', { name: `${bunName} (верх)` })
-    ).toBeVisible();
-
-    await expect(
-      page.getByRole('img', { name: `${bunName} (низ)` })
-    ).toBeVisible();
+    await expect(page.getByTestId('constructor-bun-1')).toContainText(`${bunName} (верх)`);
+    await expect(page.getByTestId('constructor-bun-2')).toContainText(`${bunName} (низ)`);
+    
   });
   test('#3 Начинка добавляется в конструктор', async ({ page }) => {
     await page
       .locator('li', { hasText: fillingName })
       .getByRole('button', { name: 'Добавить' })
       .click();
-    await expect(page.getByText(fillingName)).toHaveCount(2);
+    await expect(page.getByTestId('constructor-ingredients')).toContainText(fillingName);
   });
   test('#4 Модалка открывается с данными выбранного ингредиента', async ({ page }) => {
-    await page.getByText(fillingName).first().click();
-    await expect(
-      page.getByRole('heading', { name: 'Детали ингредиента' })
-    ).toBeVisible();
-    await expect(
-      page.getByRole('heading', { name: fillingName })
-    ).toBeVisible();
+    const modal = page.getByTestId('modal');
+    await page.getByText(fillingName).click();
+    await expect(modal.getByText('Детали ингредиента')).toBeVisible();
+    await expect(modal.getByRole('heading', { name: fillingName })).toBeVisible();
   });
   test('#5 Модалка закрывается по крестику', async ({ page }) => {
-    await page.getByText(fillingName).first().click();
-    await expect(
-      page.getByRole('heading', { name: 'Детали ингредиента' })
-    ).toBeVisible();
-    await page.getByRole('button', { name: 'Закрыть' }).click();
-    await expect(
-      page.getByRole('heading', { name: 'Детали ингредиента' })
-    ).not.toBeVisible();
+    const modal = page.getByTestId('modal');
+    await page.getByText(fillingName).click();
+    await expect(modal.getByText('Детали ингредиента')).toBeVisible();
+    await modal.getByRole('button', { name: 'Закрыть' }).click();
+    await expect(modal).not.toBeVisible();
   });
   test('#6 Модалка закрывается по оверлею', async ({ page }) => {
-    await page.getByText(fillingName).first().click();
-
-  const modalHeading = page.getByRole('heading', {
-    name: 'Детали ингредиента',
-    });
-    await expect(modalHeading).toBeVisible();
-    await page.mouse.click(10, 10);
-    await expect(modalHeading).not.toBeVisible();
+    const modal = page.getByTestId('modal');
+    await page.getByText(fillingName).click();
+    await expect(modal.getByText('Детали ингредиента')).toBeVisible();
+    await page.getByTestId('modal-overlay').click({ position: { x: 10, y: 10 } });
+    await expect(modal).not.toBeVisible();
   });
 });
 
@@ -89,30 +76,19 @@ test.describe('Создание заказа', () => {
       .locator('li', { hasText: bunName })
       .getByRole('button', { name: 'Добавить' })
       .click();
-    await expect(
-      page.getByRole('img', { name: `${bunName} (верх)` })
-    ).toBeVisible();
+    await expect(page.getByTestId('constructor-bun-1')).toContainText(`${bunName} (верх)`);
     await page
-    .locator('li', { hasText: fillingName })
-    .getByRole('button', { name: 'Добавить' })
-    .click();
-    await expect(
-      page.getByRole('img', { name: fillingName })
-    ).toBeVisible();
+      .locator('li', { hasText: fillingName })
+      .getByRole('button', { name: 'Добавить' })
+      .click();
+    await expect(page.getByTestId('constructor-ingredients')).toContainText(fillingName);
     await page.getByRole('button', { name: 'Оформить заказ' }).click();
-    await expect(
-      page.getByText('Выберите начинку')
-    ).toBeVisible();
-    await expect(page.getByRole('heading', { name: orderNumber })).toBeVisible();
-    await expect(
-      page.getByRole('img', { name: `${bunName} (верх)` })
-    ).not.toBeVisible();
-    await expect(
-      page.getByRole('img', { name: `${bunName} (низ)` })
-    ).not.toBeVisible();
+    await expect(page.getByTestId('constructor-ingredients')).toContainText('Выберите начинку');
+    await expect(page.getByTestId('order-number')).toHaveText(orderNumber);
+    await expect(page.getByTestId('constructor-bun-1')).not.toBeVisible();
+    await expect(page.getByTestId('constructor-ingedients')).not.toBeVisible();
+    await expect(page.getByTestId('constructor-bun-2')).not.toBeVisible();
     await page.getByRole('button', { name: 'Закрыть' }).click();
-    await expect(
-      page.getByRole('heading', { name: orderNumber })
-    ).not.toBeVisible();
+    await expect(page.getByTestId('order-number')).not.toBeVisible();
   });
 });
