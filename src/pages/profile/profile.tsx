@@ -7,10 +7,9 @@ export const Profile = (): React.JSX.Element => {
   const dispatch = useDispatch();
   const user = useSelector(getUserSelector);
 
-
   const [formValue, setFormValue] = useState({
-    name: user?.name ?? "",
-    email: user?.email ?? "",
+    name: user?.name ?? '',
+    email: user?.email ?? '',
     password: '',
   });
 
@@ -19,7 +18,7 @@ export const Profile = (): React.JSX.Element => {
       ...prevState,
       name: user?.name || '',
       email: user?.email || '',
-      password: "",
+      password: '',
     }));
   }, [user]);
 
@@ -36,8 +35,8 @@ export const Profile = (): React.JSX.Element => {
   const handleCancel = (e: SyntheticEvent): void => {
     e.preventDefault();
     setFormValue({
-      name: user?.name ?? "",
-      email: user?.email ?? "",
+      name: user?.name ?? '',
+      email: user?.email ?? '',
       password: '',
     });
   };

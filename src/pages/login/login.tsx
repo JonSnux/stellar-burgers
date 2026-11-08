@@ -10,7 +10,7 @@ export const Login = (): React.JSX.Element => {
 
   const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
-    dispatch(loginUser({email, password}));
+    dispatch(loginUser({ email, password }));
   };
 
   return (
