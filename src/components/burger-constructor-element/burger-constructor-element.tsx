@@ -4,7 +4,11 @@ import { memo } from 'react';
 import type { BurgerConstructorElementProps } from './type';
 import { useDispatch } from 'react-redux';
 import type { AppDispatch } from '@/services/store';
-import { deleteIngredient, moveIngredientDown, moveIngredientUp } from '@/services/slices/constructor-slice';
+import {
+  deleteIngredient,
+  moveIngredientDown,
+  moveIngredientUp,
+} from '@/services/slices/constructor-slice';
 
 export const BurgerConstructorElement = memo(function BurgerConstructorElement({
   ingredient,

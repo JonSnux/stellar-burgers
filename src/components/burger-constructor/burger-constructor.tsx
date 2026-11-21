@@ -4,8 +4,16 @@ import type { TConstructorIngredient } from '@utils-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getUserSelector } from '@/services/slices/user-slice';
-import { clearConstructor, getConstructorSelector } from '@/services/slices/constructor-slice';
-import { clearOrder, getOrderModalDataSelector, getOrderRequestSelector, orderBurger } from '@/services/slices/order-slice';
+import {
+  clearConstructor,
+  getConstructorSelector,
+} from '@/services/slices/constructor-slice';
+import {
+  clearOrder,
+  getOrderModalDataSelector,
+  getOrderRequestSelector,
+  orderBurger,
+} from '@/services/slices/order-slice';
 import type { AppDispatch } from '@/services/store';
 
 export const BurgerConstructor = (): React.JSX.Element | null => {
@@ -19,7 +27,7 @@ export const BurgerConstructor = (): React.JSX.Element | null => {
   const onOrderClick = (): void => {
     if (!user) {
       navigate('/login');
-      return
+      return;
     }
     if (!constructorItems.bun || orderRequest) return;
     const ingredientIds = [

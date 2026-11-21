@@ -1,4 +1,13 @@
-import { getOrdersApi, getUserApi, loginUserApi, logoutApi, registerUserApi, type TLoginData, type TRegisterData, updateUserApi } from '@api';
+import {
+  getOrdersApi,
+  getUserApi,
+  loginUserApi,
+  logoutApi,
+  registerUserApi,
+  type TLoginData,
+  type TRegisterData,
+  updateUserApi,
+} from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { deleteCookie, setCookie } from '@utils/cookie';
 import type { RootState } from '@services/store.ts';

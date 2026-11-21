@@ -13,10 +13,15 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
   <header className={styles.header}>
     <nav className={`${styles.menu} p-4`}>
       <div className={styles.menu_part_left}>
-        <NavLink to="/" className={({ isActive }) =>
-        `text text_type_main-medium text_color_inactive pt-4 pb-4 ${
-          styles.link
-        } ${isActive ? styles.link_active : ''}`} end>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `text text_type_main-medium text_color_inactive pt-4 pb-4 ${
+              styles.link
+            } ${isActive ? styles.link_active : ''}`
+          }
+          end
+        >
           {({ isActive }) => (
             <>
               <BurgerIcon type={isActive ? 'primary' : 'secondary'} />
@@ -24,10 +29,15 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
             </>
           )}
         </NavLink>
-        <NavLink to="/feed" className={({ isActive }) =>
-        `text text_type_main-medium text_color_inactive pt-4 pb-4 ${
-          styles.link
-        } ${isActive ? styles.link_active : ''}`} end>
+        <NavLink
+          to="/feed"
+          className={({ isActive }) =>
+            `text text_type_main-medium text_color_inactive pt-4 pb-4 ${
+              styles.link
+            } ${isActive ? styles.link_active : ''}`
+          }
+          end
+        >
           {({ isActive }) => (
             <>
               <ListIcon type={isActive ? 'primary' : 'secondary'} />
@@ -40,10 +50,15 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
         <Logo className="" />
       </div>
       <div className={styles.link_position_last}>
-        <NavLink to="/profile" className={({ isActive }) =>
-        `text text_type_main-medium text_color_inactive pt-4 pb-4 ${
-          styles.link
-        } ${isActive ? styles.link_active : ''}`} end>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            `text text_type_main-medium text_color_inactive pt-4 pb-4 ${
+              styles.link
+            } ${isActive ? styles.link_active : ''}`
+          }
+          end
+        >
           {({ isActive }) => (
             <>
               <ProfileIcon type={isActive ? 'primary' : 'secondary'} />

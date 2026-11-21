@@ -1,7 +1,23 @@
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
-import { ConstructorPage, Feed, ForgotPassword, Login, NotFound404, Profile, ProfileOrders, Register, ResetPassword } from '@pages';
+import {
+  ConstructorPage,
+  Feed,
+  ForgotPassword,
+  Login,
+  NotFound404,
+  Profile,
+  ProfileOrders,
+  Register,
+  ResetPassword,
+} from '@pages';
 import { Preloader } from '@ui';
-import { Routes, Route, useLocation, useNavigate, type Location } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  type Location,
+} from 'react-router-dom';
 
 import type { AppContentProps } from './type';
 import type { TIngredient } from '@utils-types';
@@ -11,7 +27,12 @@ import '../../index.css';
 import styles from './app.module.css';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import { useDispatch, useSelector } from 'react-redux';
-import { getErrorSelector, getIngredients, getIngredientsSelector, getIsLoadingSelector } from '@/services/slices/ingredients-slice';
+import {
+  getErrorSelector,
+  getIngredients,
+  getIngredientsSelector,
+  getIsLoadingSelector,
+} from '@/services/slices/ingredients-slice';
 import { useEffect } from 'react';
 import type { AppDispatch } from '@/services/store';
 import { getCookie } from '@/utils/cookie';
@@ -86,37 +107,65 @@ const RouteComponent = (): React.JSX.Element => {
       <Routes location={background ?? location}>
         <Route path="/" element={<ConstructorPage />} />
         <Route path="/feed" element={<Feed />} />
-        <Route path='/feed/:number' element={<OrderInfo />} />
-        <Route path='/login' element={
-          <ProtectedRoute unAuth>
-            <Login />
-          </ProtectedRoute>} />
-        <Route path='/register' element={
-          <ProtectedRoute unAuth>
-            <Register />
-          </ProtectedRoute>} />
-        <Route path='/forgot-password' element={
-          <ProtectedRoute unAuth>
-            <ForgotPassword />
-          </ProtectedRoute>} />
-        <Route path='/reset-password' element={
-          <ProtectedRoute unAuth>
-            <ResetPassword />
-          </ProtectedRoute>} />
-        <Route path='/profile' element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>} />
-        <Route path='/profile/orders' element={
-          <ProtectedRoute>
-            <ProfileOrders/>
-          </ProtectedRoute>} />
-        <Route path='/profile/orders/:number' element={
-          <ProtectedRoute>
-            <OrderInfo />
-          </ProtectedRoute>} />
-        <Route path='/ingredients/:id' element={<IngredientDetails />} />
-        <Route path='*' element={<NotFound404/>} />
+        <Route path="/feed/:number" element={<OrderInfo />} />
+        <Route
+          path="/login"
+          element={
+            <ProtectedRoute unAuth>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <ProtectedRoute unAuth>
+              <Register />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <ProtectedRoute unAuth>
+              <ForgotPassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <ProtectedRoute unAuth>
+              <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile/orders"
+          element={
+            <ProtectedRoute>
+              <ProfileOrders />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile/orders/:number"
+          element={
+            <ProtectedRoute>
+              <OrderInfo />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/ingredients/:id" element={<IngredientDetails />} />
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
       {background && (
         <Routes>
